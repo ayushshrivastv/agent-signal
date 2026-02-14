@@ -1,0 +1,22 @@
+[package]
+name = "signal-cpi"
+version = "0.1.4"
+edition = "2021"
+include = ["src/**/*", "idl.json"]
+description = "CPI helpers for the signal program"
+
+repository = "https://github.com/ayushshrivastv/agent-signal/tree/main/crates/signal-cpi"
+license = "MIT"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[features]
+default = ["cpi"]
+no-entrypoint = []
+no-idl = []
+no-log-ix-name = []
+cpi = ["no-entrypoint"]
+
+[dependencies]
+clockwork-anchor-gen = "0.3.2"
+anchor-lang = "0.29.0"
