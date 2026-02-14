@@ -1,0 +1,54 @@
+import { type PublicKey } from "@solana/web3.js";
+import { type IdlAccounts } from "@coral-xyz/anchor";
+import { type signal } from "../idl/signal";
+import type BN from "bn.js";
+
+/** Class representing a deserialized on-chain `Achievement` account. */
+export class AchievementAccount {
+  private constructor(
+    public readonly address: PublicKey,
+    public readonly game: PublicKey,
+    public readonly id: BN,
+    public readonly title: string,
+    public readonly description: string,
+    public readonly nftMeta: PublicKey,
+    public readonly reward: PublicKey | null
+  ) {}
+
+  /** Create a new instance from an anchor-deserialized account. */
+  public static fromIdlAccount(
+    account: IdlAccounts<signal>["achievement"],
+    address: PublicKey
+  ): AchievementAccount {
+    return new AchievementAccount(
+      address,
+      account.game,
+      account.id,
+      account.title,
+      account.description,
+      account.nftMeta,
+      account.reward
+    );
+  }
+
+  /** Pretty print. */
+  public pretty(): {
+    address: string;
+    game: string;
+    id: string;
+    title: string;
+    description: string;
+    nftMeta: string;
+    reward: string | PublicKey | null;
+  } {
+    return {
+      address: this.address.toBase58(),
+      game: this.game.toBase58(),
+      id: this.id.toString(),
+      title: this.title,
+      description: this.description,
+      nftMeta: this.nftMeta.toBase58(),
+      reward: this.reward !== null ? this.reward.toBase58() : this.reward,
+    };
+  }
+}

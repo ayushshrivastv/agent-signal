@@ -1,0 +1,61 @@
+import { type PublicKey } from "@solana/web3.js";
+import { type IdlAccounts } from "@coral-xyz/anchor";
+import { type signal } from "../idl/signal";
+
+/** Class representing a deserialized on-chain `Merged` account. */
+export class MergedAccount {
+  private constructor(
+    public readonly address: PublicKey,
+    public readonly initiator: PublicKey,
+    public readonly approvals: MergeApproval[],
+    public readonly mergeComplete: boolean
+  ) {}
+
+  /** Create a new instance from an anchor-deserialized account. */
+  public static fromIdlAccount(
+    account: IdlAccounts<signal>["merged"],
+    address: PublicKey
+  ): MergedAccount {
+    return new MergedAccount(
+      address,
+      account.initiator,
+      account.approvals,
+      account.mergeComplete
+    );
+  }
+
+  /** Pretty print. */
+  public pretty(): {
+    address: string;
+    initiator: string;
+    others: Array<{
+      key: string;
+      approved: boolean;
+    }>;
+    mergeComplete: boolean;
+  } {
+    return {
+      address: this.address.toBase58(),
+      initiator: this.initiator.toBase58(),
+      others: this.approvals.map((approval) => printMergeApproval(approval)),
+      mergeComplete: this.mergeComplete,
+    };
+  }
+}
+
+interface MergeApproval {
+  key: PublicKey;
+  approved: boolean;
+}
+
+const printMergeApproval = (
+  raw: MergeApproval
+): {
+  key: string;
+  approved: boolean;
+} => {
+  return {
+    key: raw.key.toBase58(),
+    approved: raw.approved,
+  };
+};
