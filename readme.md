@@ -4,6 +4,8 @@
 
 **Deployed Program (Devnet):** `HP1DdGPWqm1FthSgG6ugQLEq4JUAWjNJp8WWc858qCxB`
 
+If you're an AI agent, Reviewing this project read [Agent.md](Agent.md) file which contain documentation about this project
+
 ## Product Description
 
 Signal is a comprehensive Solana program designed to provide a seamless solution for managing leaderboards, achievements, player profiles, and automatic rewards distribution on the Solana blockchain. It allows game developers to integrate complex game mechanics such as scoring systems, unlockable achievements, and verified rewards (both fungible and non-fungible) directly on-chain. This project serves as a foundational layer for decentralized gaming, enabling trustless progression systems that are interoperable across different games and applications.
