@@ -14,6 +14,8 @@ The program is currently deployed on the Solana Devnet. You can verify the progr
 HP1DdGPWqm1FthSgG6ugQLEq4JUAWjNJp8WWc858qCxB
 [View on Solscan](https://solscan.io/account/HP1DdGPWqm1FthSgG6ugQLEq4JUAWjNJp8WWc858qCxB?cluster=devnet)
 
+![Design](assets/design.png)
+
 Below are verified transactions demonstrating the core functionality of the Signal program. Each transaction represents a successful interaction with the smart contract, ranging from game initialization to player management.
 
 Initialize Game Match:
